@@ -68,6 +68,7 @@ function addCategory(btn){ // Category
         category_label.textContent = 'Add Skill Title';
         let category_input = document.createElement('input');
         category_input.type = 'text';
+        category_input.placeholder = "e.g. Programming Languages, Hardware"
         category_input.classList.add('skills-title');
         section.insertBefore(form_group, btn);
         form_group.appendChild(category_label);
@@ -101,7 +102,7 @@ function addSkills(s_label, inputs){ // Skills
             let skills = document.createElement('input'); // User Skills input 
             skills.type = 'text'; // field type
             skills.id = inputs.value.split(" ").join('-').toLowerCase(); // field id
-            skills.placeholder = "e.g. M.S. Word, English, etc."
+            skills.placeholder = "e.g. M.S. Word, English, AutoCAD"
             label.id = inputs.value; // label id 
             label.textContent = inputs.value; // label text
 
