@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV Builder & Live Preview</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Top Action Toolbar -->
+  <header class="app-toolbar no-print">
+    <div class="toolbar-content">
+      <h2 class="app-title">CV Generator</h2>
+      <button type="button" class="btn btn-primary" onclick="window.print()">Print / Export PDF</button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+
+    <!-- ================= LEFT: INPUT FORM ================= -->
+    <aside class="form-container no-print">
+      <form id="cv-form" class="editor-form" onsubmit="return false;">
+
+        <!-- Personal Info -->
+        <fieldset class="form-section">
+          <legend>Personal Information</legend>
+          <div class="form-group">
+            <label for="input-fullname">Full Name</label>
+            <input type="text" id="input-fullname" placeholder="e.g. Juan Dela Cruz" />
+          </div>
+          <div class="form-group">
+            <label for="input-address">Address</label>
+            <input type="text" id="input-address" placeholder="e.g. Manila, Philippines" />
+          </div>
+          <div class="form-group">
+            <label for="input-number">Phone Number</label>
+            <input type="text" id="input-number" placeholder="e.g. +639192337898" />
+          </div>
+          <div class="form-group">
+            <label for="input-email">Email Address</label>
+            <input type="text" id="input-email" placeholder="e.g. mail@mail.com" />
+          </div>
+          <div class="form-group">
+            <label for="input-contact">LinkedIn Profile</label>
+            <input type="text" id="input-linkedin" placeholder="e.g. Juan Dela Cruz" />
+          </div>
+          <div class="form-group">
+            <label for="input-contact">Github Profile</label>
+            <input type="text" id="input-github" placeholder="e.g. Juan Dela Cruz" />
+          </div>
+        </fieldset>
+
+        <!-- Professional Summary -->
+        <fieldset class="form-section">
+          <legend>Professional Summary</legend>
+          <div class="form-group">
+            <label for="input-summary">Summary</label>
+            <textarea id="input-summary" rows="4" placeholder="Brief introduction summarizing experience and skills..."></textarea>
+          </div>
+        </fieldset>
+
+        <!-- Technical Skills -->
+        <fieldset class="form-section skills">
+          
+          <legend>Technical Skills</legend>
+          <!-- <div class="form-group">
+            <label id="category" for="input-skills-languages">Programming Languages</label>
+            <input type="text" id="input-skills-languages" placeholder="e.g. PHP, JavaScript, Python, SQL" />
+          </div>
+          <div class="form-group">
+            <label for="input-skills-frontend">Frontend</label>
+            <input type="text" id="input-skills-frontend" placeholder="e.g. HTML5, CSS3, Tailwind CSS" />
+          </div>
+          <div class="form-group">
+            <label for="input-skills-backend">Backend & APIs</label>
+            <input type="text" id="input-skills-backend" placeholder="e.g. Node.js, WebSockets, REST APIs" />
+          </div>
+          <div class="form-group">
+            <label for="input-skills-tools">Tools & Platforms</label>
+            <input type="text" id="input-skills-tools" placeholder="e.g. Git, GitHub, VS Code, Apache" />
+          </div> -->
+          <button type="button" id="btn-add-categories" class="btn btn-secondary">+ Add Another Skills</button>
+        </fieldset>
+
+        <!-- Projects / Experience -->
+        <fieldset class="form-section experience">
+          <legend>Projects & Experience</legend>
+          <div id="project-inputs-container">
+            <!-- Default Project Form Card -->
+            <div class="nested-card hidden" style="display: none">
+              <div class="form-group">
+                <label for="input-proj-title-1">Project / Job Title</label>
+                <input type="text" id="input-proj-title-1" placeholder="e.g. Real-Time Data Logging System" />
+              </div>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label for="input-proj-role-1">Role / Location</label>
+                  <input type="text" id="input-proj-role-1" placeholder="Lead Developer | Cavite" />
+                </div>
+                <div class="form-group flex-1">
+                  <label for="input-proj-date-1">Date Period</label>
+                  <input type="text" id="input-proj-date-1" placeholder="Jan 2026 – Apr 2026" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="input-proj-bullets-1">Bullet Points (one per line)</label>
+                <textarea id="input-proj-bullets-1" rows="3" placeholder="Key achievements and technologies used..."></textarea>
+              </div>
+            </div>
+            <!-- Project 0 Form Card -->
+            <div class="nested-card">
+              <div class="form-group">
+                <label for="input-proj-title-0">Project / Job Title</label>
+                <input type="text" id="input-proj-title-0" placeholder="e.g. Real-Time Data Logging System" />
+              </div>
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label for="input-proj-role-0">Role / Location</label>
+                  <input type="text" id="input-proj-role-0" placeholder="Lead Developer | Cavite" />
+                </div>
+                <div class="form-group flex-1">
+                  <label for="input-proj-date-0">Date Period</label>
+                  <input type="text" id="input-proj-date-0" placeholder="Jan 2026 – Apr 2026" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="input-proj-bullets-0">Bullet Points (one per line)</label>
+                <textarea id="input-proj-bullets-0" rows="3" placeholder="Key achievements and technologies used..."></textarea>
+              </div>
+            </div>
+          </div>
+          <button type="button" id="btn-add-project" class="btn btn-secondary">+ Add Another Project</button>
+        </fieldset>
+
+        <!-- Education -->
+        <fieldset class="form-section">
+          <legend>Primary Education</legend>
+          <div class="form-group">
+            <label for="input-primary-school">School / University</label>
+            <input type="text" id="input-primary-school" placeholder="e.g. Cavite State University" />
+          </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="input-primary-grad-date">Graduation Date</label>
+              <input type="text" id="input-primary-grad-date" placeholder="Apr 2026" />
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="form-section">
+          <legend>Secondary Education</legend>
+          <div class="form-group">
+            <label for="input-jhs">School / University</label>
+            <input type="text" id="input-jhs" placeholder="e.g. Cavite State University" />
+          </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="input-jhs-grad-date">Graduation Date</label>
+              <input type="text" id="input-jhs-grad-date" placeholder="Apr 2026" />
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="form-section">
+          <legend>Secondary Education</legend>
+          <div class="form-group">
+            <label for="input-shs">School / University</label>
+            <input type="text" id="input-shs" placeholder="e.g. Cavite State University" />
+          </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="input-strand">Strand Program</label>
+              <input type="text" id="input-strand" placeholder="e.g. S.T.E.M., A.B.M." />
+            </div>
+            <div class="form-group flex-1">
+              <label for="input-grad-date">Graduation Date</label>
+              <input type="text" id="input-shs-grad-date" placeholder="Apr 2026" />
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="form-section">
+          <legend>Tertiary Education</legend>
+          <div class="form-group">
+            <label for="input-school">School / University</label>
+            <input type="text" id="input-school" placeholder="e.g. Cavite State University" />
+          </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="input-degree">Degree Program</label>
+              <input type="text" id="input-degree" placeholder="BS Computer Science" />
+            </div>
+            <div class="form-group flex-1">
+              <label for="input-grad-date">Graduation Date</label>
+              <input type="text" id="input-grad-date" placeholder="Apr 2026" />
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </aside>
+
+
+    <!-- ================= RIGHT: CV PREVIEW ================= -->
+    <section class="preview-container">
+      <main class="resume-document" id="resume-preview">
+
+        <!-- Header -->
+        <header class="resume-header">
+          <h1 class="candidate-name" id="preview-fullname">YOUR FULL NAME</h1>
+          <p class="contact-details" id="preview-contact">
+            <span id="preview-address">Location</span> | 
+            <span id="preview-number">Phone</span> | 
+            <span id="preview-email">Email</span> | 
+            <span id="preview-linkedin">LinkedIn</span> | 
+            <span id="preview-github">GitHub</span>
+          </p>
+        </header>
+        <hr class="divider" />
+
+        <!-- Summary -->
+        <section class="resume-section">
+          <h2 class="section-title">Professional Summary</h2>
+          <p class="section-text" id="preview-summary">
+            Your summary text will appear here as you type in the form.
+          </p>
+        </section>
+        <hr class="divider" />
+
+        <!-- Skills -->
+        <section class="resume-section">
+          <h2 class="section-title">Technical Skills</h2>
+          <ul class="skills-list" id="preview-skills">
+            <p class="placeholder">Your technical skills will appear here as you type in the form.</p>
+            <!-- <li><strong>Programming Languages:</strong> <span id="preview-languages">PHP, JavaScript, Python</span></li>
+            <li><strong>Frontend:</strong> <span id="preview-frontend">HTML5, CSS3, Tailwind CSS</span></li>
+            <li><strong>Backend & APIs:</strong> <span id="preview-backend">Node.js, WebSockets, REST APIs</span></li>
+            <li><strong>Tools & Platforms:</strong> <span id="preview-tools">Git, GitHub, VS Code</span></li> -->
+          </ul>
+        </section>
+        <hr class="divider" />
+
+        <!-- Projects -->
+        <section class="resume-section experience">
+          <h2 class="section-title">Projects & Technical Experience</h2>
+          <div id="preview-projects-list">
+            <!-- Project 1 Preview -->
+            <article class="entry">
+              <div class="entry-line">
+                <h3 class="entry-title" id="preview-proj-title-0">Project Name</h3>
+                <span class="entry-date" id="preview-proj-date-0">Date Period</span>
+              </div>
+              <p class="entry-role" id="preview-proj-role-0">Role / Location</p>
+              <ul class="bullet-list" id="preview-proj-bullets-0">
+                <li>Key project responsibility or measurable result.</li>
+              </ul>
+            </article>
+            <!-- Default Preview  -->
+            <article class="entry hidden-entry" style="display: none">
+              <div class="entry-line">
+                <h3 class="entry-title" id="preview-proj-title-1">Project Name</h3>
+                <span class="entry-date" id="preview-proj-date-1">Date Period</span>
+              </div>
+              <p class="entry-role" id="preview-proj-role-1">Role / Location</p>
+              <ul class="bullet-list" id="preview-proj-bullets-1">
+                <li>Key project responsibility or measurable result.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+        <hr class="divider" />
+
+        <!-- Education -->
+        <section class="resume-section">
+          <h2 class="section-title">Education</h2>
+          <article class="entry">
+            <div class="entry-line">
+              <h3 class="entry-title" id="preview-school">University Name</h3>
+              <span class="entry-date" id="preview-grad-date">Graduation Year</span>
+            </div>
+            <p class="entry-role" id="preview-degree">Degree Program</p>
+          </article>
+          <article class="entry">
+            <div class="entry-line">
+              <h3 class="entry-title" id="preview-shs">School Name</h3>
+              <span class="entry-date" id="preview-shs-grad-date">Graduation Year</span>
+            </div>
+            <p class="entry-role" id="preview-strand">Strand Program</p>
+          </article>
+          <article class="entry">
+            <div class="entry-line">
+              <h3 class="entry-title" id="preview-jhs">School Name</h3>
+              <span class="entry-date" id="preview-jhs-grad-date">Graduation Year</span>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="entry-line">
+              <h3 class="entry-title" id="preview-primary-school">School Name</h3>
+              <span class="entry-date" id="preview-primary-grad-date">Graduation Year</span>
+            </div>
+          </article>
+        </section>
+        <hr class="divider" />
+
+      </main>
+    </section>
+
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
