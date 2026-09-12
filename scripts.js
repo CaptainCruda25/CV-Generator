@@ -4,7 +4,9 @@ let address = document.getElementById('input-address');
 let p_number = document.getElementById('input-number');
 let email = document.getElementById('input-email');
 let linkedin = document.getElementById('input-linkedin');
+let linkedinLink = document.getElementById('input-linkedin-link');
 let github = document.getElementById('input-github');
+let githubLink = document.getElementById('input-github-link');
 let summary = document.getElementById('input-summary');
 let addSkillsBtn = document.getElementById('btn-add-categories');
 let addSkillsLabel = document.querySelector('.skills-title');
@@ -31,7 +33,9 @@ let previewAddress = document.getElementById('preview-address');
 let prevNumber = document.getElementById('preview-number');
 let prevEmail = document.getElementById('preview-email');
 let prevLinkedIn = document.getElementById('preview-linkedin');
+let linkedInProfile = document.getElementById('linkedin-link');
 let prevGithub = document.getElementById('preview-github');
+let githubProfile = document.getElementById('github-link');
 let prevSummary = document.getElementById('preview-summary');
 
 // PROJECT EXPERIENCE PART
@@ -56,6 +60,13 @@ let prev_prim_grad =  document.getElementById('preview-primary-grad-date');
 function inputData(inputs, prev){ // For inputs
     inputs.addEventListener('keyup', function(){
         prev.textContent = inputs.value;
+    });
+}
+
+function addLink(input, anc){
+    input.addEventListener('input', function(){
+        anc.href = input.value;
+        anc.title = input.value;
     });
 }
 
@@ -199,7 +210,9 @@ inputData(address, previewAddress);
 inputData(p_number, prevNumber);
 inputData(email, prevEmail);
 inputData(linkedin, prevLinkedIn);
+addLink(linkedinLink, linkedInProfile);
 inputData(github, prevGithub);
+addLink(githubLink, githubProfile);
 
 // Summary part
 inputData(summary, prevSummary);
