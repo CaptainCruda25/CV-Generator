@@ -58,7 +58,7 @@ let prev_prim_grad =  document.getElementById('preview-primary-grad-date');
 
 // Functions 
 function inputData(inputs, prev){ // For inputs
-    inputs.addEventListener('keyup', function(){
+    inputs.addEventListener('input', function(){
         prev.textContent = inputs.value;
     });
 }
@@ -134,7 +134,7 @@ function addSkills(s_label, inputs){ // Skills
 }
 
 function bulletPerLine(inputs, prev){
-    inputs.addEventListener('keyup', function(){
+    inputs.addEventListener('input', function(){
         prev.innerHTML = "";
         let b_points = inputs.value.split(/\r?\n/)
                    .filter(line => line.trim() !== "").map(line => {
