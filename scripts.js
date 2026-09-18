@@ -188,7 +188,7 @@ function addExperience(btn){ // Projects and technical experience
         // Looping to make dynamic count
         updateIDs(elements, expCount);
         
-        // insert the clone elements into descend mode 
+        // Insert the clone elements into descend mode 
         container.prepend(cloneExp);
         
         // Looping to make inputData() function works
