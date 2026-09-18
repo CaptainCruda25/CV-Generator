@@ -63,6 +63,14 @@ function inputData(inputs, prev){ // For inputs
     });
 }
 
+function titleChange(fn, inputs, prev){
+    inputs.addEventListener('input', function(){
+        const title = document.querySelector('title');
+        title.textContent = inputs.value ? inputs.value.toUpperCase() : "Dynamic CV Builder" ;
+    });
+    fn(inputs, prev);
+}
+
 function addLink(input, anc){
     input.addEventListener('input', function(){
         anc.href = input.value;
@@ -205,7 +213,7 @@ function addExperience(btn){ // Projects and technical experience
 // Education
 
 // Info
-inputData(fullname, previewName);
+titleChange(inputData, fullname, previewName);
 inputData(address, previewAddress);
 inputData(p_number, prevNumber);
 inputData(email, prevEmail);
