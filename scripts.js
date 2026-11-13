@@ -3,29 +3,29 @@ let fullname = document.getElementById('input-fullname');
 let address = document.getElementById('input-address');
 let p_number = document.getElementById('input-number');
 let email = document.getElementById('input-email');
-let linkedin = document.getElementById('input-linkedin');
 let linkedinLink = document.getElementById('input-linkedin-link');
-let github = document.getElementById('input-github');
 let githubLink = document.getElementById('input-github-link');
+let role = document.getElementById('input-role');
 let summary = document.getElementById('input-summary');
 let addSkillsBtn = document.getElementById('btn-add-categories');
 let addSkillsLabel = document.querySelector('.skills-title');
+// Professional Experience
+let jobTitle0 = document.getElementById('input-job-title-0');
+let jobCompany0 = document.getElementById('input-job-company-0');
+let jobDate0 = document.getElementById('input-job-date-0');
+let jobBulletPoint = document.getElementById('input-job-bullets-0');
+let addJobExpBtn = document.getElementById('btn-add-job-exp');
+// Technical Experience
 let projectTitle0 = document.getElementById('input-proj-title-0');
 let projectRole0 = document.getElementById('input-proj-role-0');
 let projectDate0 = document.getElementById('input-proj-date-0');
 let projectBulletPoint = document.getElementById('input-proj-bullets-0');
 let addProjectBtn = document.getElementById('btn-add-project');
 // EDUCATION PART
-let input_prim_school=  document.getElementById('input-primary-school');
-let prim_grad_date =  document.getElementById('input-primary-grad-date');
-let input_jhs=  document.getElementById('input-jhs');
-let jhs_grad_date =  document.getElementById('input-jhs-grad-date');
-let input_shs=  document.getElementById('input-shs');
-let input_shs_strand = document.getElementById('input-strand');
-let shs_grad_date = document.getElementById('input-shs-grad-date');
-let input_tertiary = document.getElementById('input-school');
-let tertiary_degree = document.getElementById('input-degree');
-let tertiary_grad_date = document.getElementById('input-grad-date');
+let highest_attainment = document.getElementById('input-school');
+let degree = document.getElementById('input-degree');
+let grad_date = document.getElementById('input-grad-date');
+let project = document.getElementById("input-academic-highlight");
 
 // CV PREVIEW
 let previewName = document.getElementById('preview-fullname');
@@ -36,25 +36,27 @@ let prevLinkedIn = document.getElementById('preview-linkedin');
 let linkedInProfile = document.getElementById('linkedin-link');
 let prevGithub = document.getElementById('preview-github');
 let githubProfile = document.getElementById('github-link');
+let prevRole = document.getElementById('preview-target-role');
 let prevSummary = document.getElementById('preview-summary');
 
-// PROJECT EXPERIENCE PART
+// PROFESSIONAL EXPERIENCE PART
+let prevJob0 = document.getElementById('preview-exp-title-0');
+let prevCompany0 = document.getElementById('preview-exp-role-0');
+let prevJobDate0 = document.getElementById('preview-exp-date-0');
+let prevJobBulletPoint = document.getElementById('preview-exp-bullets-0');
+
+// TECHNICAL PROJECT PART
 let prevProject0 = document.getElementById('preview-proj-title-0');
 let prevRole0 = document.getElementById('preview-proj-role-0');
 let prevProjectDate0 = document.getElementById('preview-proj-date-0');
 let prevBulletPoint = document.getElementById('preview-proj-bullets-0');
 
 // EDUCATION
-let prev_tertiary =  document.getElementById('preview-school');
-let prev_ter_grad =  document.getElementById('preview-grad-date');
-let prev_ter_degree =  document.getElementById('preview-degree');
-let prev_shs =  document.getElementById('preview-shs');
-let prev_shs_grad =  document.getElementById('preview-shs-grad-date');
-let prev_shs_strand =  document.getElementById('preview-strand');
-let prev_jhs =  document.getElementById('preview-jhs');
-let prev_jhs_grad =  document.getElementById('preview-jhs-grad-date');
-let prev_primary =  document.getElementById('preview-primary-school');
-let prev_prim_grad =  document.getElementById('preview-primary-grad-date');
+let prev_highest =  document.getElementById('preview-school');
+let prev_grad =  document.getElementById('preview-grad-date');
+let prev_degree =  document.getElementById('preview-degree');
+let prev_proj =  document.getElementById('preview-acad-highlight');
+
 
 // Functions 
 function inputData(inputs, prev){ // For inputs
@@ -161,14 +163,14 @@ function updateIDs(name, count){
     });
 }
 
-function addExperience(btn){ // Projects and technical experience
+function addExperience(btn, type){ // Projects and technical experience
     let expCount = 0;
     btn.addEventListener('click', function(){
         // Increment the expCount
         expCount++;
         
         // Parent element (CV Form)
-        let parent = document.getElementById('project-inputs-container');
+        let parent = document.getElementById(`${type}-inputs-container`);
         let card = document.querySelector('.hidden');
         card.removeAttribute("style");
         let clone = card.cloneNode(true);
@@ -183,12 +185,12 @@ function addExperience(btn){ // Projects and technical experience
         parent.appendChild(clone);
 
         // Parent element (Preview Side)
-        let container = document.getElementById('preview-projects-list');
-        let listExp = document.querySelector('.hidden-entry');
+        let container = document.getElementById(`preview-${type}-list`);
+        let listExp = document.querySelector(`.hidden-${type}-entry`);
         // Set to visible 
         listExp.removeAttribute('style');
         let cloneExp = listExp.cloneNode(true);
-        cloneExp.classList.remove('hidden-entry');
+        cloneExp.classList.remove(`hidden-${type}-entry`);
         let elements = cloneExp.querySelectorAll('[id]');
         // Set back to default hidden
         listExp.setAttribute('style', 'display: none');
@@ -210,17 +212,28 @@ function addExperience(btn){ // Projects and technical experience
     });
 }
 
-// Education
+// Include Exp
+function includeExp(){
+    document.getElementById('toggle-experience').addEventListener('change', function(e){
+        const isChecked = e.target.checked;
+        let expSection = document.querySelectorAll(".experience").forEach((element) =>  {
+            element.style.display = isChecked ? 'block' : 'none';
+        });
+        let line = document.getElementById('line').style.display = isChecked ? 'block' : 'none';
+
+    });
+}
 
 // Info
 titleChange(inputData, fullname, previewName);
 inputData(address, previewAddress);
 inputData(p_number, prevNumber);
 inputData(email, prevEmail);
-inputData(linkedin, prevLinkedIn);
+inputData(linkedinLink, prevLinkedIn);
 addLink(linkedinLink, linkedInProfile);
-inputData(github, prevGithub);
+inputData(githubLink, prevGithub);
 addLink(githubLink, githubProfile);
+inputData(role, prevRole);
 
 // Summary part
 inputData(summary, prevSummary);
@@ -228,23 +241,26 @@ inputData(summary, prevSummary);
 // Add skills
 addCategory(addSkillsBtn);
 
-// Project/Experience
+// With Professional Exp or without
+includeExp();
+
+// Professional Experience
+inputData(jobTitle0, prevJob0);
+inputData(jobCompany0, prevJobDate0);
+inputData(jobDate0, prevJobDate0);
+bulletPerLine(jobBulletPoint, prevJobBulletPoint);
+
+// Technical Project
 inputData(projectTitle0, prevProject0);
 inputData(projectRole0, prevRole0);
 inputData(projectDate0, prevProjectDate0);
 bulletPerLine(projectBulletPoint, prevBulletPoint);
 
 // Add Project/Technical skills
-addExperience(addProjectBtn);
-
+addExperience(addJobExpBtn, 'exp'); // Professional Experience
+addExperience(addProjectBtn, 'project'); // Technical Projects
 // EDUCATION
-inputData(input_prim_school, prev_primary);
-inputData(prim_grad_date, prev_prim_grad);
-inputData(input_jhs, prev_jhs);
-inputData(jhs_grad_date, prev_jhs_grad);
-inputData(input_shs, prev_shs);
-inputData(shs_grad_date, prev_shs_grad);
-inputData(input_shs_strand, prev_shs_strand);
-inputData(input_tertiary, prev_tertiary);
-inputData(tertiary_grad_date, prev_ter_grad);
-inputData(tertiary_degree, prev_ter_degree);
+inputData(highest_attainment, prev_highest);
+inputData(grad_date, prev_grad);
+inputData(degree, prev_degree);
+bulletPerLine(project, prev_proj);
