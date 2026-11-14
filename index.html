@@ -57,34 +57,11 @@
         </fieldset>
 
         <!-- Professional Summary -->
-        <fieldset class="form-section">
+        <fieldset class="form-section p_summary">
           <legend>Professional Summary</legend>
           <div class="form-group">
             <label for="input-summary">Summary</label>
             <textarea id="input-summary" rows="4" placeholder="Brief introduction summarizing experience and skills..."></textarea>
-          </div>
-        </fieldset>
-        <!-- Education -->
-        
-        <fieldset class="form-section">
-          <legend>Education | Highest Attainment</legend>
-          <div class="form-group">
-            <label for="input-school">School / University</label>
-            <input type="text" id="input-school" placeholder="e.g. Cavite State University" />
-          </div>
-          <div class="form-row">
-            <div class="form-group flex-1">
-              <label for="input-degree">Degree / Program / Strand</label>
-              <input type="text" id="input-degree" placeholder="Bachelor of Science in Computer Science" />
-            </div>
-            <div class="form-group flex-1">
-              <label for="input-grad-date">Graduation Date</label>
-              <input type="text" id="input-grad-date" placeholder="Graduated: Apr 2026" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="input-academic-highlight">Academic Project / Honors (Optional)</label>
-            <input type="text" id="input-academic-highlight" placeholder="e.g. Thesis Project Leader: [System Title]" />
           </div>
         </fieldset>
         
@@ -93,6 +70,13 @@
           <legend>Technical Skills</legend>
           <button type="button" id="btn-add-categories" class="btn btn-secondary">+ Add Another Skills</button>
         </fieldset>
+        <!-- Professional Summary Toggle -->
+        <div class="form-group checkbox-group">
+          <label for="toggle-p_summary">
+            <input type="checkbox" id="toggle-p_summary" checked />
+            Include Professional Summary
+          </label>
+        </div>
         <!-- Experience Toggle -->
         <div class="form-group checkbox-group">
           <label for="toggle-experience">
@@ -100,6 +84,14 @@
             Include Professional / Work Experience (Internships, Part-Time, Full-Time)
           </label>
         </div>
+        <!-- Education Toggle -->
+        <div class="form-group checkbox-group">
+          <label for="toggle-education">
+            <input type="checkbox" id="toggle-education" checked />
+            Include Education
+          </label>
+        </div>
+
         <!-- Projects / Experience -->
         <fieldset class="form-section experience">
           <legend>Professional Experience</legend>
@@ -199,6 +191,30 @@
           </div>
           <button type="button" id="btn-add-project" class="btn btn-secondary">+ Add Another Project</button>
         </fieldset>
+
+        <!-- Education -->
+        
+        <fieldset class="form-section education">
+          <legend>Education | Highest Attainment</legend>
+          <div class="form-group">
+            <label for="input-school">School / University</label>
+            <input type="text" id="input-school" placeholder="e.g. Cavite State University" />
+          </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="input-degree">Degree / Program / Strand</label>
+              <input type="text" id="input-degree" placeholder="Bachelor of Science in Computer Science" />
+            </div>
+            <div class="form-group flex-1">
+              <label for="input-grad-date">Graduation Date</label>
+              <input type="text" id="input-grad-date" placeholder="Graduated: Apr 2026" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="input-academic-highlight">Academic Project / Honors (Optional)</label>
+            <input type="text" id="input-academic-highlight" placeholder="e.g. Thesis Project Leader: [System Title]" />
+          </div>
+        </fieldset>
       </form>
     </aside>
 
@@ -222,29 +238,14 @@
         <hr class="divider" />
 
         <!-- Summary -->
-        <section class="resume-section">
+        <section class="resume-section p_summary">
           <h2 class="section-title">Professional Summary</h2>
           <p class="section-text" id="preview-summary">
             Your summary text will appear here as you type in the form.
           </p>
         </section>
-        <hr class="divider" />
-
-        <!-- Education -->
-        <section class="resume-section">
-          <h2 class="section-title">Education</h2>
-          <article class="entry">
-            <div class="entry-line">
-              <h3 class="entry-title" id="preview-school">University Name</h3>
-              <span class="entry-date" id="preview-grad-date">Graduated: (Year)</span>
-            </div>
-            <p class="entry-role" id="preview-degree">Degree Program</p>
-            <ul class="bullet-list">
-              <li id="preview-acad-highlight">Thesis Leader: Lead Developer, [Title of System or Research]</li>
-            </ul>
-          </article>
-        </section>
-        <hr class="divider" />
+        
+        <hr class="divider p_summary" />
 
         <!-- Skills -->
         <section class="resume-section">
@@ -253,7 +254,7 @@
             <p class="placeholder">Your technical skills will appear here as you type in the form.</p>
           </ul>
         </section>
-        <hr id="line" class="divider" />
+        <hr class="divider" />
 
         <!-- Professional Experience -->
         <section class="resume-section experience">
@@ -283,7 +284,7 @@
             </article>
           </div>
         </section>
-        <hr class="divider" />
+        <hr class="divider experience" />
 
         <!-- Projects -->
         <section class="resume-section projects">
@@ -313,7 +314,22 @@
             </article>
           </div>
         </section>
+        <hr class="divider" />
 
+        <!-- Education -->
+        <section class="resume-section education">
+          <h2 class="section-title">Education</h2>
+          <article class="entry">
+            <div class="entry-line">
+              <h3 class="entry-title" id="preview-school">University Name</h3>
+              <span class="entry-date" id="preview-grad-date">Graduated: (Year)</span>
+            </div>
+            <p class="entry-role" id="preview-degree">Degree Program</p>
+            <ul class="bullet-list">
+              <li id="preview-acad-highlight">Thesis Leader: Lead Developer, [Title of System or Research]</li>
+            </ul>
+          </article>
+        </section>
       </main>
     </section>
 

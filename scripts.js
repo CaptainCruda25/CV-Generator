@@ -213,13 +213,12 @@ function addExperience(btn, type){ // Projects and technical experience
 }
 
 // Include Exp
-function includeExp(){
-    document.getElementById('toggle-experience').addEventListener('change', function(e){
+function includeExp(id, classes){
+    document.getElementById(id).addEventListener('change', function(e){
         const isChecked = e.target.checked;
-        let expSection = document.querySelectorAll(".experience").forEach((element) =>  {
+        let expSection = document.querySelectorAll(`.${classes}`).forEach((element) =>  {
             element.style.display = isChecked ? 'block' : 'none';
         });
-        let line = document.getElementById('line').style.display = isChecked ? 'block' : 'none';
 
     });
 }
@@ -241,8 +240,12 @@ inputData(summary, prevSummary);
 // Add skills
 addCategory(addSkillsBtn);
 
+// Professional Summary 
+includeExp('toggle-p_summary', 'p_summary');
 // With Professional Exp or without
-includeExp();
+includeExp('toggle-experience', 'experience');
+// Education 
+includeExp('toggle-education', 'education');
 
 // Professional Experience
 inputData(jobTitle0, prevJob0);
